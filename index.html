@@ -3,12 +3,14 @@ layout: main
 title: 投资决策参考
 ---
 
+<p>总共{{ site.data.stocks.stockArr | size }}只股票!</p>
+
 <ul>
-{% for stock in site.data.stocks %}
+{% for stock in site.data.stocks.stockArr %}
     <li>
-        <p>
-            {{ stock.name }} : {{ stock.id }}
-        </p>
+            {% for s in stock %}
+                {{ s }}
+            {% endfor %}
     </li>
 {% endfor %}
 </ul>
