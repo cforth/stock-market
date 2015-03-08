@@ -1,0 +1,14 @@
+---
+layout: main
+title: 投资决策参考
+---
+
+<ul>
+{% for stock in site.data.stocks %}
+    <li>
+        <p>
+            {{ stock.name }} : {{ stock.id }}
+        </p>
+    </li>
+{% endfor %}
+</ul>
