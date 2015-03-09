@@ -3,14 +3,18 @@ layout: main
 title: 投资决策参考
 ---
 
-<p>总共{{ site.data.stocks.stockArr | size }}只股票!</p>
+{% assign stockArr = site.data.stocks.stockArr %}
+
+<p>总共{{ stockArr | size }}只股票!</p>
 
 <ul>
-{% for stock in site.data.stocks.stockArr %}
+{% for stock in stockArr %}
+    {% if stock[0] == "SZ" %}
     <li>
             {% for s in stock %}
                 {{ s }}
             {% endfor %}
     </li>
+    {% endif %}
 {% endfor %}
 </ul>
