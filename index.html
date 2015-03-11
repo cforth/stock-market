@@ -18,3 +18,25 @@ title: 投资决策参考
     {% endif %}
 {% endfor %}
 </ul>
+
+<script>
+  $(document).ready(function(){
+    var dataStr = '{"SZ": [{% for stock in stockArr %}{% if stock[0] == "SZ" %}[{% for s in stock %}"{{ s }}"{% if s != stock[6] %},{% endif %}{% endfor %}]{% if stock != stockArr[9] %},{% endif %}{% endif %}{% endfor %}]}',  
+    data = JSON.parse(dataStr),
+    curTag = $.query.get("tag"),
+    archieves = data[curTag];
+    
+    var text = "";
+    for(var i = 0; i < archieves.length; i += 1) {
+        text += "<p>";
+        for(var j = 0; j < archieves[i].length; j += 1) {
+            text += archieves[i][j];
+        }
+        text += "</p>";
+    }
+    
+    document.getElementById("stockShow").innerHTML = text;
+  });
+</script>
+
+<div id="stockShow"></div>
