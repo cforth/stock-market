@@ -1,1 +1,2 @@
-document.writeln("Hello, world!");
+---
+---
