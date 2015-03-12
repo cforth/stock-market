@@ -1,17 +1,23 @@
 ---
 ---
-{% assign stockArr = site.data.stocks.stockArr %}
-{% assign stockName = site.data.stocks.stockName %}
+{% assign stockCategories = site.data.stocks.categories %}
+{% assign stockRecords = site.data.stocks.records %}
 
 //STOCK作为所有全局变量的容器
 var STOCK = {};
 
+STOCK.idList = [{% for stock in stockRecords %}
+        "{{stock[1]}}"{%if forloop.last == false %},{% endif %}
+    {% endfor %}
+];
+
 //生成JSON格式的数据
-STOCK.stockData = {
-    "stock":[{% for stock in stockArr %}
-        {   {% for s in stock %}   
-            "{{stockName[forloop.index0]}}":"{{stock[forloop.index0]}}"{%if forloop.last == false %},{% endif %}
+STOCK.data = {
+    {% for stock in stockRecords %}
+        "{{stock[1]}}":{
+            {% for s in stock %}   
+            "{{stockCategories[forloop.index0]}}":"{{s}}"{%if forloop.last == false %},{% endif %}
             {% endfor %} 
         }{%if forloop.last == false %},{% endif %}
     {% endfor %}
-]};
+};

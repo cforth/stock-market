@@ -3,24 +3,21 @@ layout: main
 title: 投资决策参考
 ---
 
-{% assign stockArr = site.data.stocks.stockArr %}
+{% assign stockArr = site.data.stocks.records %}
 
 <p>总共{{ stockArr | size }}只股票!</p>
 
 <ul>
 {% for stock in stockArr %}
-    {% if stock[0] == "SZ" %}
     <li>
         {{ stock | join: '，' }}
     </li>
-    {% endif %}
 {% endfor %}
 </ul>
 
-<script>
-  $(document).ready(function(){
+<div id="stockShow"></div>
 
-  });
+<script>
+    document.getElementById("stockShow").innerHTML = insertStockList(STOCK.idList, STOCK.data);
 </script>
 
-<div id="stockShow"></div>
