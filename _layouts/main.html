@@ -6,7 +6,20 @@
 </head>
 
 <body>
-{{ content }}
+    <div class="menu">
+        <ul>
+            <li><a href="{{ site.baseurl}}/">测试网址参数为空</a></li>
+            <li><a href="{{ site.baseurl}}/index.html?key=date&value=2015-02-25">测试网址参数 date = 2015-02-25</a></li>
+            <li><a href="{{ site.baseurl}}/index.html?key=trade&value=计算机">测试网址参数 trade = 计算机</a></li>
+            <li><a href="{{ site.baseurl}}/index.html?key=rate&value=买入">测试网址参数 rate = 买入</a></li>
+            <li><a href="{{ site.baseurl}}/index.html?asdsad">测试网址参数格式错误</a></li>
+            <li><a href="{{ site.baseurl}}/index.html?key=rate">测试网址参数个数错误</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        {{ content }}
+    </div>
 </body>
 
 </html>

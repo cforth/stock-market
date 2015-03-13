@@ -6,21 +6,18 @@ title: 投资决策参考
     $(document).ready(function(){
         var curKey = $.query.get("key");
         var curValue = $.query.get("value");
-        //BUG：如果网址中有key和value关键字，但没有值，也会返回true使得下面这个判断有问题
-        var data = (curKey && curValue) ? STOCK.filter(curKey, curValue) : STOCK.data;
+        var data, text;
         
-        document.getElementById("stockNumber").innerHTML = '总计' + data.length + '只股票！';
-        document.getElementById("stockShow").innerHTML = insertStockList(data);
+        if(curKey == true || curValue == true) {
+            text = "404！网址参数错误，找不到网页！";
+        }
+        else{
+            data = (curKey && curValue) ? STOCK.filter(curKey, curValue) : STOCK.data;
+            text = '<p>总计' + data.length + '只股票！</p>' + insertStockList(data);
+        }
+
+        document.getElementById("stockShow").innerHTML = text;
     });
 </script>
 
-<div id="stockNumber"></div>
-
 <div id="stockShow"></div>
-
-<ul>
-    <li><a href="{{ site.baseurl}}/">测试网址参数为空</a></li>
-    <li><a href="{{ site.baseurl}}/index.html?key=date&value=2015-02-25">测试网址参数 date = 2015-02-25</a></li>
-    <li><a href="{{ site.baseurl}}/index.html?key=trade&value=计算机">测试网址参数 trade = 计算机</a></li>
-    <li><a href="{{ site.baseurl}}/index.html?key=rate&value=买入">测试网址参数 rate = 买入</a></li>
-</ul>

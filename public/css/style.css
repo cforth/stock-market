@@ -1,0 +1,21 @@
+body {
+    width:1000px;
+    margin:0 auto;
+    font-family: \5FAE\8F6F\96C5\9ED1;
+    background:#FFFFFF;  
+}
+
+.content {
+    width:670px;
+    float:left;
+    border:0;
+    padding-right:20px;
+}
+
+.menu {
+    width:310px;
+    float:left;
+    border:0;
+    margin:0;
+    padding:0;
+}
