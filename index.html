@@ -15,9 +15,21 @@ title: 投资决策参考
 {% endfor %}
 </ul>
 
+<ul>
+    <li><a href="{{ site.baseurl}}/">测试网址参数1</a></li>
+    <li><a href="{{ site.baseurl}}/index.html?key=date&value=2015-02-25">测试网址参数2</a></li>
+</ul>
+
 <div id="stockShow"></div>
 
 <script>
-    document.getElementById("stockShow").innerHTML = insertStockList(STOCK.filter("trade","计算机"));
+    $(document).ready(function(){
+        var curKey = $.query.get("key");
+        var curValue = $.query.get("value");
+        //BUG：如果网址中有key和value关键字，但没有值，也会返回true使得下面这个判断有问题
+        var data = (curKey && curValue) ? STOCK.filter(curKey, curValue) : STOCK.data;
+    
+        document.getElementById("stockShow").innerHTML = insertStockList(data);
+    });
 </script>
 
