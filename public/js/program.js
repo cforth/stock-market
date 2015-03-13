@@ -1,10 +1,11 @@
-var insertStockList = function (idList, data) {
+//将股票数据插入到网页中
+var insertStockList = function (data) {
     var text = '<ul>';
     var stock;
 
-    for (var i=0; i<idList.length; i++){
-        stock = data[idList[i]];
-        text = text + '<li>' + stock.id + ' : ' + stock.trade + '</li>';
+    for (var i=0; i<data.length; i++){
+        stock = data[i];
+        text = text + '<li>' + stock.id + ' ' + stock.trade + '</li>';
     }
     text = text +  '</ul>';
     

@@ -1,23 +1,24 @@
 ---
 ---
-{% assign stockCategories = site.data.stocks.categories %}
-{% assign stockRecords = site.data.stocks.records %}
+{% assign stockKeys = site.data.stocks.categories %}
+{% assign stockValues = site.data.stocks.records %}
 
 //STOCK作为所有全局变量的容器
 var STOCK = {};
 
-STOCK.idList = [{% for stock in stockRecords %}
-        "{{stock[1]}}"{%if forloop.last == false %},{% endif %}
-    {% endfor %}
-];
-
 //生成JSON格式的数据
-STOCK.data = {
-    {% for stock in stockRecords %}
-        "{{stock[1]}}":{
-            {% for s in stock %}   
-            "{{stockCategories[forloop.index0]}}":"{{s}}"{%if forloop.last == false %},{% endif %}
-            {% endfor %} 
-        }{%if forloop.last == false %},{% endif %}
-    {% endfor %}
-};
+STOCK.data = [
+    {% for stock in stockValues %}
+        { {% for s in stock %}"{{stockKeys[forloop.index0]}}":"{{s}}"{%if forloop.last == false %},{% endif %}{% endfor %} }{%if forloop.last == false %},{% endif %}
+    {% endfor %}];
+
+//根据索引和值来过滤数据
+STOCK.filter = function(key, value) {
+    var result = [];
+    for(var i = 0; i < this.data.length; i += 1) {
+        if(this.data[i][key] === value) {
+            result.push(this.data[i]);
+        }
+    }
+    return result;
+}
