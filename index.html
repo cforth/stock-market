@@ -4,17 +4,17 @@ title: 投资决策参考
 ---
 <script>
     $(document).ready(function(){
+        //测试更新股票数据
+        STOCK.setValue("300075", "date", "2015-03-13");
+        
+        //测试显示股票表格
         var curKey = $.query.get("key");
         var curValue = $.query.get("value");
         var data, text;
-        
-        if(curKey == true || curValue == true) {
-            text = "404！网址参数错误，找不到网页！";
-        }
-        else{
-            data = (curKey && curValue) ? STOCK.filter(curKey, curValue) : STOCK.data;
-            text = '<p>总计' + data.length + '只股票！</p>' + insertStockList(data);
-        }
+
+        data = (curKey && curValue) ? STOCK.filter(curKey, curValue) : STOCK.getData();
+        text = '<p>总计' + arrCount(data) + '只股票！</p>' + insertStockList(data);
+
 
         document.getElementById("stockShow").innerHTML = text;
     });
