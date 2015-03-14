@@ -12,7 +12,7 @@ title: 投资决策参考
         var curValue = $.query.get("value");
         var data, text;
 
-        data = (curKey && curValue) ? STOCK.filter(curKey, curValue) : STOCK.getData();
+        data = (curKey && curValue) ? STOCK.filter(curKey, curValue) : STOCK.gethashArr();
         text = '<p>总计' + arrCount(data) + '只股票！</p>' + insertStockList(data);
 
 
