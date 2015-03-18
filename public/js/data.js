@@ -17,10 +17,10 @@ STOCK._hashArr = {
 //获取STOCK._hashArr的接口方法
 STOCK.gethashArr = function() {
     return this._hashArr;
-}    
+}; 
     
 
-//过滤器方法，根据索引和值来筛选股票数据
+//过滤器方法，根据键值对来筛选数据
 STOCK.filter = function(key, value) {
     var stockData = this._hashArr;
     var result = {};
@@ -35,11 +35,11 @@ STOCK.filter = function(key, value) {
 
 //查询值方法
 STOCK.getValue = function(id, key) {
-    return STOCK._hashArr[id][key];
-}
+    return this._hashArr[id][key];
+};
 
 
-//更新值方法
+//更新或插入键值对的方法
 STOCK.setValue = function(id, key, value) {
-    STOCK._hashArr[id][key] = value;
-}
+    this._hashArr[id][key] = value;
+};

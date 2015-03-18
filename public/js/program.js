@@ -1,5 +1,5 @@
 // 计算数组的长度
-arrCount = function(o) {
+var arrCount = function(o) {
     var t = typeof o;
     if(t === 'string'){
         return o.length;
@@ -24,12 +24,14 @@ var insertStockList = function (data) {
     var text = '<table border = 1>';
     var stock;
     
-    text += '<tr><td>股票代码</td><td>所属行业</td><td>关注日期</td><td>初始价</td><td>目标价</td><td>评级</td></tr>';
+    text += '<tr><td>关注日期</td><td>股票代码</td><td>股票名称</td><td>当日涨跌%</td><td>当前价格</td><td>行业分类</td><td>目标价</td><td>累计涨跌%</td></tr>';
     for (var i = 0; i < arr.length; i += 1){
         stock = arr[i][1];
-        text = text + '<tr><td>' + stock.id + '</td><td>' + stock.trade + '</td><td>' + stock.date  + '</td><td>' + stock.initPrice + '</td><td>' + stock.targetPrice + '</td><td>' + stock.rate + '</td></tr>';
+        text = text + '<tr><td>' + stock.date + '</td><td>' + stock.id + '</td><td>' + stock.name  + '</td><td>' + stock.percent + '</td><td>' + stock.price + '</td><td>' + stock.trade +'</td><td>' + stock.targetPrice +'</td><td>' + stock.totalPercent +'</td></tr>';
     }
     text = text +  '</table>';
     
     return text;
 };
+
+
