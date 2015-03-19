@@ -3,20 +3,27 @@ layout: main
 title: 投资决策参考
 ---
 <script>
-    $(document).ready(function(){
-        //测试更新股票数据
-        STOCK.setValue("300075", "date", "2015-03-13");
-        
+    $(document).ready(function(){  
         //测试显示股票表格
         var curKey = $.query.get("key");
         var curValue = $.query.get("value");
         var data, text;
+        STOCK.nowArr = (curKey && curValue) ? STOCK.filter(curKey, curValue) : STOCK.gethashArr();
+        
+        var stockUrl = "http://api.money.126.net/data/feed/";        
+        
+        for(var i in STOCK.nowArr) {
+            if(parseInt(i) > 599999) {
+                stockUrl += '0' + i + ",";
+            }
+            else {
+                stockUrl += '1' + i + ",";
+            }
+        }
+        stockUrl += "money.api"; 
+        
+        STOCK.doJsonp(stockUrl, insertStockList, 20000);
 
-        data = (curKey && curValue) ? STOCK.filter(curKey, curValue) : STOCK.gethashArr();
-        text = '<p>总计' + arrCount(data) + '只股票！</p>' + insertStockList(data);
-
-
-        document.getElementById("stockShow").innerHTML = text;
     });
 </script>
 
