@@ -1,3 +1,39 @@
+//jsonp获取126股票数据
+var do_jsonp_id = 1;
+
+var doJsonp = function(url, callback, timeout) {
+    var name = "do_jsonp_callback_"+(do_jsonp_id++);
+    var ele = document.createElement('script');
+    var timer;
+
+    window[name] = function() {
+        //清理计时器
+        window.clearTimeout(timer);
+        //回调回调函数
+        callback.apply(this, arguments);
+        //清理元素
+        ele.parentNode.removeChild(ele);
+        //清理回调
+        delete window[name];
+    };
+
+    url += ((url.indexOf("?") == -1) ? '?' : '&') + "callback=" + name;
+
+    ele.src = url;
+
+    //超时处理
+    timer = window.setTimeout(function(){
+        //清理元素
+        ele.parentNode.removeChild(ele);
+        //清理回调
+        delete window[name];
+    }, timeout||30000);
+
+    //执行请求
+    document.getElementsByTagName('head')[0].appendChild(ele);
+};
+
+
 // 计算数组的长度
 var arrCount = function(o) {
     var t = typeof o;
@@ -13,14 +49,13 @@ var arrCount = function(o) {
 
 
 //将股票数据插入到网页中
-var insertStockList = function (data126) {
+var insertStockList = function (jsonpData) {
     
-    STOCK.setValue(data126);
+    STOCK.setValue(jsonpData);
     //将关联数组转换为数组进行排序
-    data = STOCK.nowArr;
     var arr = [];
-    for(var name in data) {
-        arr.push([name, data[name]]);
+    for(var name in STOCK.nowArr) {
+        arr.push([name, STOCK.nowArr[name]]);
     }
     arr.sort(function(a,b){return a[1].date < b[1].date ? 1 : -1});
     

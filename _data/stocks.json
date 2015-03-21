@@ -1,7 +1,7 @@
 {
-"categories": ["date", "id", "name", "percent", "price", "trade", "targetPrice", "totalPercent", "market", "initPrice"],
+"keys": ["date", "id", "name", "percent", "price", "trade", "targetPrice", "totalPercent", "market", "initPrice"],
 
-"records": [
+"values": [
     ["2015-03-04", "300075", "", "", "", "计算机",    "53.00", "",  "SZ",  "45.41"],
     ["2015-03-04", "002392", "", "", "", "钢铁行业",  "16.20", "",  "SZ",  "13.66"],
     ["2015-03-04", "002405", "", "", "", "计算机",    "32.37", "",  "SZ",  "29.38"],

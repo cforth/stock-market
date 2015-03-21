@@ -13,16 +13,11 @@ title: 投资决策参考
         var stockUrl = "http://api.money.126.net/data/feed/";        
         
         for(var i in STOCK.nowArr) {
-            if(parseInt(i) > 599999) {
-                stockUrl += '0' + i + ",";
-            }
-            else {
-                stockUrl += '1' + i + ",";
-            }
+            stockUrl += i + ",";
         }
         stockUrl += "money.api"; 
         
-        STOCK.doJsonp(stockUrl, insertStockList, 20000);
+        doJsonp(stockUrl, insertStockList, 20000);
 
     });
 </script>
